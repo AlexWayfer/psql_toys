@@ -14,9 +14,8 @@ module PSQLToys
 						database = template.db_config[:database]
 
 						sh "createdb -U postgres #{database} -O #{template.db_config[:user]}"
-						template.db_extensions.each do |db_extension|
-							sh "psql -U postgres -c 'CREATE EXTENSION #{db_extension}' #{database}"
-						end
+
+						exec_tool 'db:create_extensions'
 
 						puts "Database #{database} created."
 					end
