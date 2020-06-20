@@ -25,16 +25,21 @@ gem install psql_toys
 ## Usage
 
 ```ruby
-# Namespace is recommended
-tool :database do
-  # You can require migrations tools here
+require 'psql_toys'
+expand PSQLToys::Template,
+  db_config_proc: (proc do
+    require "#{context_directory}/config/config"
+    MyProject::Application.config[:database]
+  end),
+  db_connection_proc: (proc do
+    require "#{context_directory}/config/config"
+    MyProject::Application.db_connection
+  end),
+  db_extensions: %w[citext pgcrypto] # this is default, can be changed
 
-  require 'psql_toys'
-  expand PSQLToys::Template, application: MyProject::Application
-end
-# These aliases are optional, but handful
+# `database` namespace created
+# aliases are optional, but handful
 alias_tool :db, :database
-alias_tool :psql, 'database:psql'
 ```
 
 ## Development

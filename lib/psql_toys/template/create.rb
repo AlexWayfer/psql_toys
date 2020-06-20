@@ -4,20 +4,21 @@ module PSQLToys
 	class Template
 		## Define toys for database creation
 		class Create < Base
-			on_expand do
+			on_expand do |template|
 				tool :create do
+					include :exec, exit_on_nonzero_status: true
+
 					desc 'Create empty DB'
 
-					def run
-						## https://github.com/rubocop-hq/rubocop/issues/7884
-						# rubocop:disable Layout/IndentationStyle
-						sh "createdb -U postgres #{db_config[:database]}" \
-						   " -O #{db_config[:user]}"
-						DB_EXTENSIONS.each do |db_extension|
-							sh "psql -U postgres -c 'CREATE EXTENSION #{db_extension}'" \
-							   " #{db_config[:database]}"
+					to_run do
+						database = template.db_config[:database]
+
+						sh "createdb -U postgres #{database} -O #{template.db_config[:user]}"
+						template.db_extensions.each do |db_extension|
+							sh "psql -U postgres -c 'CREATE EXTENSION #{db_extension}' #{database}"
 						end
-						# rubocop:enable Layout/IndentationStyle
+
+						puts "Database #{database} created."
 					end
 				end
 			end

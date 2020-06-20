@@ -6,11 +6,18 @@ module PSQLToys
 		class Dumps < Base
 			on_expand do |template|
 				tool :dumps do
-					require_relative 'dumps/create'
-					expand Dumps::Create, application: template.application
+					require_relative 'dumps/_base'
 
-					require_relative 'dumps/restore'
-					expand Dumps::Restore, application: template.application
+					subtool_apply do
+						include Dumps::Base::CommonPSQLDumpsCode
+					end
+
+					%w[Create Restore].each do |template_name|
+						require_relative "dumps/#{template_name.downcase}"
+						expand Dumps.const_get(template_name, false),
+							db_config_proc: template.db_config_proc,
+							db_extensions: template.db_extensions
+					end
 
 					require_relative 'dumps/list'
 					expand Dumps::List

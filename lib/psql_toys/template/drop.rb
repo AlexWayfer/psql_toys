@@ -4,32 +4,36 @@ module PSQLToys
 	class Template
 		## Define toys for database drop
 		class Drop < Base
-			on_expand do
+			on_expand do |template|
 				tool :drop do
+					include :exec, exit_on_nonzero_status: true
+
 					desc 'Drop DB'
 
 					flag :force, '-f', '--[no-]force'
 					flag :question, '-q', '--[no-]question', default: true
 
-					def run
+					to_run do
+						@database = template.db_config[:database]
+
 						ask_question if question
 
 						exec_tool 'db:dump' unless force
 
-						db_connection.disconnect
-						sh "dropdb --if-exists #{db_access} #{db_config[:database]}"
+						template.db_connection.disconnect
+						sh "dropdb --if-exists #{template.db_access} #{@database}"
 					end
 
 					private
 
 					def ask_question
 						require 'highline'
-						highline = Highline.new
+						highline = HighLine.new
 
 						highline.choose do |menu|
 							menu.layout = :one_line
 
-							menu.prompt = "Drop #{db_config[:database]} ? "
+							menu.prompt = "Drop #{@database} ? "
 
 							menu.choice(:yes) {}
 							menu.choice(:no) { abort 'OK' }

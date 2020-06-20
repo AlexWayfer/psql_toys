@@ -4,13 +4,15 @@ module PSQLToys
 	class Template
 		## Define toys for PSQL console
 		class Console < Base
-			on_expand do
+			on_expand do |template|
 				tool :console do
+					include :exec, exit_on_nonzero_status: true
+
 					desc 'Start PSQL console'
 
-					def run
-						update_pgpass
-						sh "psql #{db_access} #{db_config[:database]}"
+					to_run do
+						template.update_pgpass
+						sh "psql #{template.db_access} #{template.db_config[:database]}"
 					end
 				end
 

@@ -34,7 +34,7 @@ class DumpFile
 		'custom' => '.dump'
 	}.freeze
 
-	missing_formats = DB_DUMP_FORMATS.reject do |db_dump_format|
+	missing_formats = PSQLToys::Template::Dumps::Base::DB_DUMP_FORMATS.reject do |db_dump_format|
 		DB_DUMP_EXTENSIONS[db_dump_format]
 	end
 
@@ -44,6 +44,8 @@ class DumpFile
 	end
 
 	class << self
+		attr_accessor :db_dumps_dir, :db_config
+
 		def db_dump_regexp
 			return unless db_config
 			return @db_dump_regexp if defined?(@db_dump_regexp)
@@ -54,14 +56,14 @@ class DumpFile
 				end
 
 			@db_dump_regexp = /^
-				#{DB_DUMPS_DIR}#{Regexp.escape(File::SEPARATOR)}
+				#{db_dumps_dir}#{Regexp.escape(File::SEPARATOR)}
 				#{db_config[:database]}_#{DB_DUMP_TIMESTAMP_REGEXP}
 				(#{regexp_escaped_db_dump_extensions.join('|')})
 			$/xo
 		end
 
 		def all
-			Dir[File.join(DB_DUMPS_DIR, '*')]
+			Dir[File.join(db_dumps_dir, '*')]
 				.select { |file| file.match?(db_dump_regexp) }
 				.map! { |file| new filename: file }
 				.sort!
@@ -95,10 +97,7 @@ class DumpFile
 	end
 
 	def path
-		File.join(
-			DB_DUMPS_DIR,
-			"#{db_config[:database]}_#{version}#{@extension}"
-		)
+		File.join self.class.db_dumps_dir, "#{self.class.db_config[:database]}_#{version}#{@extension}"
 	end
 
 	private

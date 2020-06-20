@@ -12,7 +12,7 @@ module PSQLToys
 						desc 'List DB dumps'
 
 						def run
-							DumpFile.all.each(&:print)
+							dump_file_class.all.each(&:print)
 						end
 					end
 				end

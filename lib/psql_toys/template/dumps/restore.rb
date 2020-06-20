@@ -5,16 +5,16 @@ module PSQLToys
 		class Dumps
 			## Define toys for PSQL dumps restoring
 			class Restore < Base
-				on_expand do
+				on_expand do |template|
 					tool :restore do
 						desc 'Restore DB dump'
 
 						optional_arg :step, accept: Integer, default: -1
 
-						def run
-							update_pgpass
+						to_run do
+							template.update_pgpass
 
-							@dump_file = DumpFile.all[step]
+							@dump_file = dump_file_class.all[step]
 
 							abort 'Dump file not found' unless @dump_file
 

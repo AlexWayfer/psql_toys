@@ -5,8 +5,10 @@ module PSQLToys
 		class Dumps
 			## Define toys for PSQL dumps creation
 			class Create < Base
-				on_expand do
+				on_expand do |template|
 					tool :create do
+						include :exec, exit_on_nonzero_status: true
+
 						desc 'Make DB dump'
 
 						flag :format, '-f', '--format=VALUE',
@@ -17,26 +19,28 @@ module PSQLToys
 								end
 							end)
 
-						def run
+						to_run do
 							require 'benchmark'
 
-							update_pgpass
+							template.update_pgpass
 
-							sh "mkdir -p #{DB_DUMPS_DIR}"
+							sh "mkdir -p #{db_dumps_dir}"
+
+							filename = dump_file_class(template.db_config).new(format: format).path
+
+							relative_filename = filename.gsub("#{context_directory}/", '')
+
+							puts "Creating dump #{relative_filename}..."
+
 							time = Benchmark.realtime do
 								## https://github.com/rubocop-hq/rubocop/issues/7884
 								# rubocop:disable Layout/IndentationStyle
-								sh "pg_dump #{db_access} -F#{format.chr}" \
-								   " #{db_config[:database]} > #{filename}"
+								sh "pg_dump #{template.db_access} -F#{format.chr}" \
+								   " #{template.db_config[:database]} > #{filename}"
 								# rubocop:enable Layout/IndentationStyle
 							end
+
 							puts "Done in #{time.round(2)} s."
-						end
-
-						private
-
-						def filename
-							DumpFile.new(format: format).path
 						end
 					end
 				end

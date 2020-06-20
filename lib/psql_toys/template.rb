@@ -7,26 +7,28 @@ module PSQLToys
 	class Template
 		include Toys::Template
 
-		attr_reader :application
+		attr_reader :db_config_proc, :db_connection_proc, :db_extensions
 
-		def initialize(application:)
-			@application = application
+		def initialize(db_config_proc:, db_connection_proc:, db_extensions: %w[citext pgcrypto])
+			@db_config_proc = db_config_proc
+			@db_connection_proc = db_connection_proc
+			@db_extensions = db_extensions
 		end
 
 		on_expand do |template|
 			require_relative 'template/_base'
 
-			require_relative 'template/create'
-			expand Template::Create, application: template.application
+			tool :database do
+				%w[Create Drop Console Dumps].each do |template_name|
+					require_relative "template/#{template_name.downcase}"
+					expand Template.const_get(template_name, false),
+						db_config_proc: template.db_config_proc,
+						db_connection_proc: template.db_connection_proc,
+						db_extensions: template.db_extensions
+				end
+			end
 
-			require_relative 'template/drop'
-			expand Template::Drop, application: template.application
-
-			require_relative 'template/console'
-			expand Template::Console, application: template.application
-
-			require_relative 'template/dumps'
-			expand Template::Dumps, application: template.application
+			alias_tool :psql, 'database:psql'
 		end
 	end
 end
