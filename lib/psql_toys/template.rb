@@ -18,9 +18,12 @@ module PSQLToys
 		on_expand do |template|
 			require_relative 'template/_base'
 
+			require 'gorilla_patch/inflections'
+			using GorillaPatch::Inflections
+
 			tool :database do
-				%w[Create Drop Console Dumps].each do |template_name|
-					require_relative "template/#{template_name.downcase}"
+				%w[Create CreateExtensions Drop Console Dumps].each do |template_name|
+					require_relative "template/#{template_name.underscore}"
 					expand Template.const_get(template_name, false),
 						db_config_proc: template.db_config_proc,
 						db_connection_proc: template.db_connection_proc,
