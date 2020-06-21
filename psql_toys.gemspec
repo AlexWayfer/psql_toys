@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
 	spec.files = Dir['lib/**/*.rb', 'README.md', 'LICENSE.txt', 'CHANGELOG.md']
 
 	spec.add_runtime_dependency 'gorilla_patch', '> 3', '< 5'
+	spec.add_runtime_dependency 'memery', '~> 1'
 	spec.add_runtime_dependency 'toys-core', '~> 0.10.0'
 
 	spec.add_development_dependency 'codecov', '~> 0.1.0'

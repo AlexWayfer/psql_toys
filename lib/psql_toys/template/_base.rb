@@ -5,6 +5,7 @@ module PSQLToys
 		## Base class for templates
 		class Base
 			include Toys::Template
+			include Memery
 
 			attr_reader :db_config_proc, :db_connection_proc, :db_extensions
 
@@ -14,22 +15,17 @@ module PSQLToys
 				@db_extensions = db_extensions
 			end
 
-			def db_config
-				return @db_config if defined?(@db_config)
-
-				@db_config = db_config_proc.call
+			memoize def db_config
+				db_config_proc.call
 			end
 
-			def db_access
-				@db_access ||=
-					{ '-U' => db_config[:user], '-h' => db_config[:host] }
-						.compact.map { |key, value| "#{key} #{value}" }.join(' ')
+			memoize def db_access(superuser: false)
+				{ '-U' => db_config[superuser ? :superuser : :user], '-h' => db_config[:host] }
+					.compact.map { |key, value| "#{key} #{value}" }.join(' ')
 			end
 
-			def db_connection
-				return @db_connection if defined?(@db_connection)
-
-				@db_connection = db_connection_proc.call
+			memoize def db_connection
+				db_connection_proc.call
 			end
 
 			PGPASS_FILE = File.expand_path '~/.pgpass'
@@ -46,11 +42,10 @@ module PSQLToys
 
 			private
 
-			def pgpass_line
-				@pgpass_line ||=
-					db_config
-						.fetch_values(:host, :port, :database, :user, :password) { |_key| '*' }
-						.join(':')
+			memoize def pgpass_line
+				db_config
+					.fetch_values(:host, :port, :database, :user, :password) { |_key| '*' }
+					.join(':')
 			end
 
 			# db_connection.loggers << Logger.new($stdout)

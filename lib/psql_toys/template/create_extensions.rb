@@ -11,10 +11,11 @@ module PSQLToys
 					desc 'Create extensions for existing DB'
 
 					to_run do
+						db_access = template.db_access(superuser: true)
 						database = template.db_config[:database]
 
 						template.db_extensions.each do |db_extension|
-							sh "psql -U postgres -c 'CREATE EXTENSION #{db_extension}' #{database}"
+							sh "psql #{db_access} -c 'CREATE EXTENSION #{db_extension}' #{database}"
 						end
 					end
 				end
