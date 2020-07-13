@@ -50,6 +50,9 @@ expand PSQLToys::Template,
 alias_tool :db, :database
 ```
 
+`db_config` must have `:database` key, and my have `:host`, `:port`, `:user`,
+`:superuser` (for database and user creation) and `:password` keys.
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies.
