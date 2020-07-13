@@ -6,8 +6,6 @@ module PSQLToys
 		class Create < Base
 			on_expand do |template|
 				tool :create do
-					include :exec, exit_on_nonzero_status: true
-
 					desc 'Create empty DB'
 
 					to_run do

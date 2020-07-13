@@ -12,15 +12,12 @@ module PSQLToys
 						include Dumps::Base::CommonPSQLDumpsCode
 					end
 
-					%w[Create Restore].each do |template_name|
+					%w[Create List Restore].each do |template_name|
 						require_relative "dumps/#{template_name.downcase}"
 						expand Dumps.const_get(template_name, false),
 							db_config_proc: template.db_config_proc,
 							db_extensions: template.db_extensions
 					end
-
-					require_relative 'dumps/list'
-					expand Dumps::List
 				end
 
 				alias_tool :dump, 'dumps:create'

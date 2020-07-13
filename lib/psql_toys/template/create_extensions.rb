@@ -6,8 +6,6 @@ module PSQLToys
 		class CreateExtensions < Base
 			on_expand do |template|
 				tool :create_extensions do
-					include :exec, exit_on_nonzero_status: true
-
 					desc 'Create extensions for existing DB'
 
 					to_run do

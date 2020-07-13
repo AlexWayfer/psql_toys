@@ -6,8 +6,6 @@ module PSQLToys
 		class Console < Base
 			on_expand do |template|
 				tool :console do
-					include :exec, exit_on_nonzero_status: true
-
 					desc 'Start PSQL console'
 
 					to_run do

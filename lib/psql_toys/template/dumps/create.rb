@@ -7,8 +7,6 @@ module PSQLToys
 			class Create < Base
 				on_expand do |template|
 					tool :create do
-						include :exec, exit_on_nonzero_status: true
-
 						desc 'Make DB dump'
 
 						flag :format, '-f', '--format=VALUE',

@@ -4,15 +4,15 @@ module PSQLToys
 	class Template
 		class Dumps
 			## Define toys for PSQL dumps listing
-			class List
+			class List < Base
 				include Toys::Template
 
-				on_expand do
+				on_expand do |template|
 					tool :list do
 						desc 'List DB dumps'
 
-						def run
-							dump_file_class.all.each(&:print)
+						to_run do
+							dump_file_class(template.db_config).all.each(&:print)
 						end
 					end
 				end

@@ -12,9 +12,11 @@ module PSQLToys
 						optional_arg :step, accept: Integer, default: -1
 
 						to_run do
-							template.update_pgpass
+							@template = template
 
-							@dump_file = dump_file_class.all[step]
+							@template.update_pgpass
+
+							@dump_file = dump_file_class(@template.db_config).all[step]
 
 							abort 'Dump file not found' unless @dump_file
 
@@ -31,7 +33,7 @@ module PSQLToys
 
 						def ask_question
 							require 'highline'
-							highline = Highline.new
+							highline = HighLine.new
 
 							highline.choose do |menu|
 								menu.layout = :one_line
@@ -45,7 +47,7 @@ module PSQLToys
 
 						def drop_if_exists
 							return unless sh(
-								"psql #{db_access} -l | grep '^\s#{db_config[:database]}\s'"
+								"psql #{@template.db_access} -l | grep '^\s#{@template.db_config[:database]}\s'"
 							)
 
 							exec_tool 'db:dump'
@@ -59,8 +61,8 @@ module PSQLToys
 							when 'plain'
 								## https://github.com/rubocop-hq/rubocop/issues/7884
 								# rubocop:disable Layout/IndentationStyle
-								sh "psql #{db_access}" \
-								   " #{db_config[:database]} < #{@dump_file.path}"
+								sh "psql #{@template.db_access}" \
+								   " #{@template.db_config[:database]} < #{@dump_file.path}"
 								# rubocop:enable Layout/IndentationStyle
 							else
 								raise 'Unknown DB dump file format'
@@ -70,8 +72,8 @@ module PSQLToys
 						def pg_restore
 							## https://github.com/rubocop-hq/rubocop/issues/7884
 							# rubocop:disable Layout/IndentationStyle
-							sh "pg_restore #{db_access} -n public" \
-							   " -d #{db_config[:database]} #{@dump_file.path}" \
+							sh "pg_restore #{@template.db_access} -n public" \
+							   " -d #{@template.db_config[:database]} #{@dump_file.path}" \
 							   ' --jobs=4 --clean --if-exists'
 							# rubocop:enable Layout/IndentationStyle
 						end
