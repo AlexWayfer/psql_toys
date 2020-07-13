@@ -29,16 +29,21 @@ Gem::Specification.new do |spec|
 
 	spec.files = Dir['lib/**/*.rb', 'README.md', 'LICENSE.txt', 'CHANGELOG.md']
 
+	spec.add_runtime_dependency 'alt_memery', '~> 2.0'
 	spec.add_runtime_dependency 'gorilla_patch', '> 3', '< 5'
-	spec.add_runtime_dependency 'memery', '~> 1'
 	spec.add_runtime_dependency 'toys-core', '~> 0.10.0'
 
-	spec.add_development_dependency 'codecov', '~> 0.1.0'
 	spec.add_development_dependency 'pry-byebug', '~> 3.9'
-	spec.add_development_dependency 'rake', '~> 13.0'
+
+	spec.add_development_dependency 'bundler', '~> 2.0'
+	spec.add_development_dependency 'gem_toys', '~> 0.3.0'
+	spec.add_development_dependency 'toys', '~> 0.10.4'
+
+	spec.add_development_dependency 'codecov', '~> 0.2.0'
 	spec.add_development_dependency 'rspec', '~> 3.9'
-	spec.add_development_dependency 'rubocop', '~> 0.85.0'
+	spec.add_development_dependency 'simplecov', '~> 0.18.0'
+
+	spec.add_development_dependency 'rubocop', '~> 0.88.0'
 	spec.add_development_dependency 'rubocop-performance', '~> 1.0'
 	spec.add_development_dependency 'rubocop-rspec', '~> 1.0'
-	spec.add_development_dependency 'simplecov', '~> 0.18.0'
 end

@@ -1,5 +1,13 @@
 # PSQL Toys
 
+[![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/AlexWayfer/psql_toys?style=flat-square)](https://cirrus-ci.com/github/AlexWayfer/psql_toys)
+[![Codecov branch](https://img.shields.io/codecov/c/github/AlexWayfer/psql_toys/master.svg?style=flat-square)](https://codecov.io/gh/AlexWayfer/psql_toys)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/AlexWayfer/psql_toys.svg?style=flat-square)](https://codeclimate.com/github/AlexWayfer/psql_toys)
+[![Depfu](https://img.shields.io/depfu/AlexWayfer/psql_toys?style=flat-square)](https://depfu.com/repos/github/AlexWayfer/psql_toys)
+[![Inline docs](https://inch-ci.org/github/AlexWayfer/psql_toys.svg?branch=master)](https://inch-ci.org/github/AlexWayfer/psql_toys)
+[![license](https://img.shields.io/github/license/AlexWayfer/psql_toys.svg?style=flat-square)](https://github.com/AlexWayfer/psql_toys/blob/master/LICENSE.txt)
+[![Gem](https://img.shields.io/gem/v/psql_toys.svg?style=flat-square)](https://rubygems.org/gems/psql_toys)
+
 Toys template for actions with PostgreSQL, like dumps.
 
 ## Installation
@@ -45,13 +53,13 @@ alias_tool :db, :database
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies.
-Then, run `bundle exec rake spec` to run the tests.
 
-To install this gem onto your local machine, run `bundle exec rake install`.
-To release a new version, update the version number in `version.rb`,
-and then run `bundle exec rake release`, which will create a git tag
-for the version, push git commits and tags, and push the `.gem` file
-to [rubygems.org](https://rubygems.org).
+Then, run `toys rspec` to run the tests.
+
+To install this gem onto your local machine, run `toys gem install`.
+
+To release a new version, run `toys gem release %version%`.
+See how it works [here](https://github.com/AlexWayfer/gem_toys#release).
 
 ## Contributing
 
