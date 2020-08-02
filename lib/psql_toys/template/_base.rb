@@ -7,6 +7,7 @@ module PSQLToys
 			include Toys::Template
 			include Memery
 
+			## `db_config_proc` getter for `Dumps` sub-tools
 			attr_reader :db_config_proc, :db_connection_proc, :db_extensions
 
 			def initialize(db_config_proc:, db_connection_proc: nil, db_extensions:)
