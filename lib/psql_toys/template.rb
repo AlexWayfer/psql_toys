@@ -16,18 +16,16 @@ module PSQLToys
 		end
 
 		on_expand do |template|
-			subtool_apply do
-				unless include? :exec
+			tool :database do
+				subtool_apply do
 					include :exec, exit_on_nonzero_status: true, log_level: Logger::UNKNOWN
 				end
-			end
 
-			require_relative 'template/_base'
+				require_relative 'template/_base'
 
-			require 'gorilla_patch/inflections'
-			using GorillaPatch::Inflections
+				require 'gorilla_patch/inflections'
+				using GorillaPatch::Inflections
 
-			tool :database do
 				%w[Create CreateExtensions Drop Console Dumps].each do |template_name|
 					require_relative "template/#{template_name.underscore}"
 					expand Template.const_get(template_name, false),
