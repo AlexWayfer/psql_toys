@@ -33,16 +33,15 @@ gem install psql_toys
 ## Usage
 
 ```ruby
+application_proc = proc do
+  require "#{context_directory}/config/main"
+  MyProject::Application
+end
+
 require 'psql_toys'
 expand PSQLToys::Template,
-  db_config_proc: (proc do
-    require "#{context_directory}/config/config"
-    MyProject::Application.config[:database]
-  end),
-  db_connection_proc: (proc do
-    require "#{context_directory}/config/config"
-    MyProject::Application.db_connection
-  end),
+  db_config_proc: proc { application_proc.call.config[:database] },
+  db_connection_proc: proc { application_proc.call.db_connection },
   db_extensions: %w[citext pgcrypto] # this is default, can be changed
 
 # `database` namespace created
