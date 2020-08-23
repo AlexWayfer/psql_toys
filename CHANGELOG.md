@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+## 0.3.0 (2020-08-23)
+
+*   Update `toys`.
+
 ## 0.2.0 (2020-08-02)
 
 *   Move `subtool_apply` and dependencies requirements inside `tool :database`
