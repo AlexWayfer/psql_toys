@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'memery'
+
 module PSQLToys
 	class Template
 		## Base class for templates
