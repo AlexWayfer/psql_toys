@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+## 0.3.1 (2020-09-11)
+
+*   Require `memery` where necessary.
+
 ## 0.3.0 (2020-08-23)
 
 *   Update `toys`.
