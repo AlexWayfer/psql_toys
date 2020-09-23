@@ -34,7 +34,7 @@ gem install psql_toys
 
 ```ruby
 application_proc = proc do
-  require "#{context_directory}/config/main"
+  require "#{context_directory}/application"
   MyProject::Application
 end
 
