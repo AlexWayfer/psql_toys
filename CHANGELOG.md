@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+## 0.3.2 (2020-09-24)
+
+*   Fix `create` tool.
+
 ## 0.3.1 (2020-09-11)
 
 *   Require `memery` where necessary.
