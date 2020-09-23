@@ -23,8 +23,12 @@ module PSQLToys
 			end
 
 			memoize def db_access(superuser: false)
-				{ '-U' => db_config[superuser ? :superuser : :user], '-h' => db_config[:host] }
-					.compact.map { |key, value| "#{key} #{value}" }.join(' ')
+				user = superuser ? db_config.fetch(:superuser, 'postgres') : db_config[:user]
+
+				{ '-U' => user, '-h' => db_config[:host] }
+					.compact
+					.map { |key, value| "#{key} #{value}" }
+					.join(' ')
 			end
 
 			memoize def db_connection

@@ -11,7 +11,10 @@ module PSQLToys
 					to_run do
 						database = template.db_config[:database]
 
-						sh "createdb -U postgres #{database} -O #{template.db_config[:user]}"
+						sh <<~CMD
+							createdb #{template.db_access(superuser: true)} #{database} \
+								-O #{template.db_config[:user]}
+						CMD
 
 						exec_tool 'db:create_extensions'
 
