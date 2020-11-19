@@ -20,7 +20,7 @@ module PSQLToys
 
 							abort 'Dump file not found' unless @dump_file
 
-							ask_question
+							@template.confirm "Restore #{@dump_file} ? "
 
 							drop_if_exists
 
@@ -30,20 +30,6 @@ module PSQLToys
 						end
 
 						private
-
-						def ask_question
-							require 'highline'
-							highline = HighLine.new
-
-							highline.choose do |menu|
-								menu.layout = :one_line
-
-								menu.prompt = "Restore #{@dump_file} ? "
-
-								menu.choice(:yes) { nil }
-								menu.choice(:no) { abort 'OK' }
-							end
-						end
 
 						def drop_if_exists
 							return unless sh(
