@@ -40,7 +40,7 @@ module PSQLToys
 
 								menu.prompt = "Restore #{@dump_file} ? "
 
-								menu.choice(:yes) {}
+								menu.choice(:yes) { nil }
 								menu.choice(:no) { abort 'OK' }
 							end
 						end

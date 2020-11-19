@@ -33,7 +33,7 @@ module PSQLToys
 
 							menu.prompt = "Drop #{@database} ? "
 
-							menu.choice(:yes) {}
+							menu.choice(:yes) { nil }
 							menu.choice(:no) { abort 'OK' }
 						end
 					end
