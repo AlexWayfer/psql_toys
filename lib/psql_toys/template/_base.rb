@@ -47,6 +47,20 @@ module PSQLToys
 				File.chmod(0o600, PGPASS_FILE)
 			end
 
+			def confirm(prompt)
+				require 'highline'
+				highline = HighLine.new
+
+				highline.choose do |menu|
+					menu.layout = :one_line
+
+					menu.prompt = prompt
+
+					menu.choice(:yes) { nil }
+					menu.choice(:no) { abort 'OK' }
+				end
+			end
+
 			private
 
 			memoize def pgpass_line

@@ -9,33 +9,17 @@ module PSQLToys
 					desc 'Drop DB'
 
 					flag :force, '-f', '--[no-]force'
-					flag :question, '-q', '--[no-]question', default: true
+					flag :confirmation, '--[no-]confirm', '--[no-]confirmation', default: true
 
 					to_run do
 						@database = template.db_config[:database]
 
-						ask_question if question
+						template.confirm "Drop #{@database} ? " if confirmation
 
 						exec_tool 'db:dump' unless force
 
 						template.db_connection.disconnect
 						sh "dropdb --if-exists #{template.db_access} #{@database}"
-					end
-
-					private
-
-					def ask_question
-						require 'highline'
-						highline = HighLine.new
-
-						highline.choose do |menu|
-							menu.layout = :one_line
-
-							menu.prompt = "Drop #{@database} ? "
-
-							menu.choice(:yes) { nil }
-							menu.choice(:no) { abort 'OK' }
-						end
 					end
 				end
 			end
