@@ -7,6 +7,8 @@ module PSQLToys
 			class Restore < Base
 				on_expand do |template|
 					tool :restore do
+						include :exec, exit_on_nonzero_status: true, log_level: Logger::UNKNOWN
+
 						desc 'Restore DB dump'
 
 						optional_arg :step, accept: Integer, default: -1

@@ -17,10 +17,6 @@ module PSQLToys
 
 		on_expand do |template|
 			tool :database do
-				subtool_apply do
-					include :exec, exit_on_nonzero_status: true, log_level: Logger::UNKNOWN
-				end
-
 				require_relative 'template/_base'
 
 				require 'gorilla_patch/inflections'

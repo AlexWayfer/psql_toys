@@ -6,6 +6,8 @@ module PSQLToys
 		class Drop < Base
 			on_expand do |template|
 				tool :drop do
+					include :exec, exit_on_nonzero_status: true, log_level: Logger::UNKNOWN
+
 					desc 'Drop DB'
 
 					flag :force, '-f', '--[no-]force'
