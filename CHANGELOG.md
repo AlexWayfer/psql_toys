@@ -2,6 +2,14 @@
 
 ## master (unreleased)
 
+## 0.3.3 (2020-12-08)
+
+*   Include `:exec` where needed, don't use `subtool_apply`.
+    Avoid conflicts with `sequel_migration_toys`.
+*   Update development dependencies.
+*   Resolve offenses from new RuboCop.
+*   Improve required Ruby version lock, avoid 3.0.
+
 ## 0.3.2 (2020-09-24)
 
 *   Fix `create` tool.
