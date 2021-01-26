@@ -28,8 +28,7 @@ remark_task:
 
 rubocop_task:
   container:
-    ## https://github.com/codecov/codecov-ruby/pull/124
-    image: ruby:2.7
+    image: ruby:latest
   <<: *bundle_cache
   lint_script: bundle exec rubocop
   only_if: ($CIRRUS_BRANCH == 'master') ||
