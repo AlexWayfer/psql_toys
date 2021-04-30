@@ -2,6 +2,13 @@
 
 ## master (unreleased)
 
+## 0.4.0 (2021-04-30)
+
+*   Add Ruby 3 support.
+*   Update development dependencies.
+*   Add `bundle-audit` CI task (for security).
+*   Update gem metadata in specs.
+
 ## 0.3.3 (2020-12-08)
 
 *   Include `:exec` where needed, don't use `subtool_apply`.
