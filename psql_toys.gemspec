@@ -16,16 +16,18 @@ Gem::Specification.new do |spec|
 
 	spec.required_ruby_version = '>= 2.5'
 
-	source_code_uri = 'https://github.com/AlexWayfer/psql_toys'
+	github_uri = "https://github.com/AlexWayfer/#{spec.name}"
 
-	spec.homepage = source_code_uri
+	spec.homepage = github_uri
 
-	spec.metadata['source_code_uri'] = source_code_uri
-
-	spec.metadata['homepage_uri'] = spec.homepage
-
-	spec.metadata['changelog_uri'] =
-		'https://github.com/AlexWayfer/psql_toys/blob/master/CHANGELOG.md'
+	spec.metadata = {
+		'bug_tracker_uri' => "#{github_uri}/issues",
+		'changelog_uri' => "#{github_uri}/blob/v#{spec.version}/CHANGELOG.md",
+		# 'documentation_uri' => "http://www.rubydoc.info/gems/#{spec.name}/#{spec.version}",
+		'homepage_uri' => spec.homepage,
+		'source_code_uri' => github_uri
+		# 'wiki_uri' => "#{github_uri}/wiki"
+	}
 
 	spec.files = Dir['lib/**/*.rb', 'README.md', 'LICENSE.txt', 'CHANGELOG.md']
 
