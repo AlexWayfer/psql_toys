@@ -33,7 +33,7 @@ Gem::Specification.new do |spec|
 
 	spec.add_runtime_dependency 'alt_memery', '~> 2.0'
 	spec.add_runtime_dependency 'gorilla_patch', '> 3', '< 5'
-	spec.add_runtime_dependency 'toys-core', '~> 0.11.0'
+	spec.add_runtime_dependency 'toys-core', '~> 0.12.0'
 
 	spec.add_development_dependency 'pry-byebug', '~> 3.9'
 
