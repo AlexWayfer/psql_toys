@@ -19,8 +19,9 @@ class DumpFile
 		DB_DUMP_TIMESTAMP_REGEXP_MAP.keys
 
 	if missing_keys.any?
-		raise "`DB_DUMP_TIMESTAMP_REGEXP_MAP` doesn't contain keys" \
-			" #{missing_keys} for `DB_DUMP_TIMESTAMP`"
+		raise <<~TEXT
+			`DB_DUMP_TIMESTAMP_REGEXP_MAP` doesn't contain keys #{missing_keys} for `DB_DUMP_TIMESTAMP`
+		TEXT
 	end
 
 	DB_DUMP_TIMESTAMP_REGEXP =
@@ -39,8 +40,9 @@ class DumpFile
 	end
 
 	if missing_formats.any?
-		raise "`DB_DUMP_EXTENSIONS` has no keys for #{missing_formats}" \
-			' from `DB_DUMP_FORMATS`'
+		raise <<~TEXT
+			`DB_DUMP_EXTENSIONS` has no keys for #{missing_formats} from `DB_DUMP_FORMATS`
+		TEXT
 	end
 
 	class << self
