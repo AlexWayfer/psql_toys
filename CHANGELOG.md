@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+## 0.4.1 (2021-08-25)
+
+*   Update development dependencies.
+
 ## 0.4.0 (2021-04-30)
 
 *   Add Ruby 3 support.
