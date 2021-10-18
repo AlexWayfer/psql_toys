@@ -1,6 +1,6 @@
 # Changelog
 
-## master (unreleased)
+## Unreleased
 
 ## 0.4.1 (2021-08-25)
 
