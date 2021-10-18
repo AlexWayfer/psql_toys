@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.4.2 (2021-10-18)
+
+*   Update development dependencies.
+*   Resolve new RuboCop offenses.
+
 ## 0.4.1 (2021-08-25)
 
 *   Update development dependencies.
