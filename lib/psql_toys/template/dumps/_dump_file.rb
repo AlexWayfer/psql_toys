@@ -66,7 +66,7 @@ class DumpFile
 
 		def all
 			Dir[File.join(db_dumps_dir, '*')]
-				.select { |file| file.match?(db_dump_regexp) }
+				.grep(db_dump_regexp)
 				.map! { |file| new filename: file }
 				.sort!
 		end
