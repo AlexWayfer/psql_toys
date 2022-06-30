@@ -47,23 +47,17 @@ module PSQLToys
 							when 'custom'
 								pg_restore
 							when 'plain'
-								## https://github.com/rubocop-hq/rubocop/issues/7884
-								# rubocop:disable Layout/IndentationStyle
-								sh "psql #{@template.db_access}" \
-								   " #{@template.db_config[:database]} < #{@dump_file.path}"
-								# rubocop:enable Layout/IndentationStyle
+								sh "psql #{@template.db_access} " \
+									"#{@template.db_config[:database]} < #{@dump_file.path}"
 							else
 								raise 'Unknown DB dump file format'
 							end
 						end
 
 						def pg_restore
-							## https://github.com/rubocop-hq/rubocop/issues/7884
-							# rubocop:disable Layout/IndentationStyle
-							sh "pg_restore #{@template.db_access} -n public" \
-							   " -d #{@template.db_config[:database]} #{@dump_file.path}" \
-							   ' --jobs=4 --clean --if-exists'
-							# rubocop:enable Layout/IndentationStyle
+							sh "pg_restore #{@template.db_access} -n public " \
+								"-d #{@template.db_config[:database]} #{@dump_file.path} " \
+								'--jobs=4 --clean --if-exists'
 						end
 					end
 				end
