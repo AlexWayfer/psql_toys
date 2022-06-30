@@ -33,11 +33,8 @@ module PSQLToys
 							puts "Creating dump #{relative_filename}..."
 
 							time = Benchmark.realtime do
-								## https://github.com/rubocop-hq/rubocop/issues/7884
-								# rubocop:disable Layout/IndentationStyle
-								sh "pg_dump #{template.db_access} -F#{format.chr}" \
-								   " #{template.db_config[:database]} > #{filename}"
-								# rubocop:enable Layout/IndentationStyle
+								sh "pg_dump #{template.db_access} -F#{format.chr} " \
+									"#{template.db_config[:database]} > #{filename}"
 							end
 
 							puts "Done in #{time.round(2)} s."
