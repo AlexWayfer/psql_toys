@@ -33,7 +33,7 @@ Layout/MultilineHashBraceLayout:
   EnforcedStyle: new_line
 
 Metrics/BlockLength:
-  IgnoredMethods:
+  AllowedMethods:
     - tool
     - on_expand
   Exclude:
