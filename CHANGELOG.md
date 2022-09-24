@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+## 0.5.1 (2022-09-24)
+
+*   Allow `gorilla_patch` version 5.
+*   Update development dependencies.
+*   Improve CI.
+
 ## 0.5.0 (2022-08-10)
 
 *   Add Ruby 3.1 support.
