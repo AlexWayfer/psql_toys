@@ -1,12 +1,13 @@
 # PSQL Toys
 
+[![Gem](https://img.shields.io/gem/v/psql_toys.svg?style=flat-square)](https://rubygems.org/gems/psql_toys)
 [![Cirrus CI - Base Branch Build Status](https://img.shields.io/cirrus/github/AlexWayfer/psql_toys?style=flat-square)](https://cirrus-ci.com/github/AlexWayfer/psql_toys)
 [![Codecov branch](https://img.shields.io/codecov/c/github/AlexWayfer/psql_toys/main.svg?style=flat-square)](https://codecov.io/gh/AlexWayfer/psql_toys)
 [![Code Climate](https://img.shields.io/codeclimate/maintainability/AlexWayfer/psql_toys.svg?style=flat-square)](https://codeclimate.com/github/AlexWayfer/psql_toys)
 [![Depfu](https://img.shields.io/depfu/AlexWayfer/psql_toys?style=flat-square)](https://depfu.com/repos/github/AlexWayfer/psql_toys)
 [![Inline docs](https://inch-ci.org/github/AlexWayfer/psql_toys.svg?branch=main)](https://inch-ci.org/github/AlexWayfer/psql_toys)
 [![license](https://img.shields.io/github/license/AlexWayfer/psql_toys.svg?style=flat-square)](https://github.com/AlexWayfer/psql_toys/blob/main/LICENSE.txt)
-[![Gem](https://img.shields.io/gem/v/psql_toys.svg?style=flat-square)](https://rubygems.org/gems/psql_toys)
+[![License](https://img.shields.io/github/license/AlexWayfer/psql_toys.svg?style=flat-square)](LICENSE.txt)
 
 Toys template for actions with PostgreSQL, like dumps.
 
