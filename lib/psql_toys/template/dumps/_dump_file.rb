@@ -95,7 +95,7 @@ class DumpFile
 	end
 
 	def print
-		puts to_s
+		puts self
 	end
 
 	def path
