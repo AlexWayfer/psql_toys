@@ -22,7 +22,7 @@ module PSQLToys
 				require 'gorilla_patch/inflections'
 				using GorillaPatch::Inflections
 
-				%w[Create CreateExtensions Drop Console Dumps].each do |template_name|
+				%w[Create CreateExtensions CreateUser Drop Console Dumps].each do |template_name|
 					require_relative "template/#{template_name.underscore}"
 					expand Template.const_get(template_name, false),
 						db_config_proc: template.db_config_proc,
