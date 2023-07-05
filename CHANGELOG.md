@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## 0.7.0 (2023-07-05)
+
+*   Add `create_user` toy.
+    It creates a project user using superuser.
+*   Drop Ruby 2.6 support.
+    It has reached the end of life (even security),
+    and it's not supported by new RuboCop version.
+*   Add Ruby 3.2 support.
+*   Move development dependencies from gemspec into Gemfile.
+*   Update development dependencies.
+*   Resolve new RuboCop offenses.
+
 ## 0.6.0 (2022-10-22)
 
 *   Update `toys-core`.
