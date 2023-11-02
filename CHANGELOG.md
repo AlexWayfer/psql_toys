@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.8.0 (2023-11-02)
+
+*   Update `toys` dependencies.
+*   Update development dependencies.
+
 ## 0.7.0 (2023-07-05)
 
 *   Add `create_user` toy.
