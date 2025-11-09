@@ -34,5 +34,5 @@ Gem::Specification.new do |spec|
 
 	spec.add_dependency 'alt_memery', '~> 2.0'
 	spec.add_dependency 'gorilla_patch', '> 3', '< 6'
-	spec.add_dependency 'toys-core', '~> 0.17.0'
+	spec.add_dependency 'toys-core', '0.17.1'
 end
