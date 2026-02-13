@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
 
 	spec.files = Dir['lib/**/*.rb', 'README.md', 'LICENSE.txt', 'CHANGELOG.md']
 
-	spec.add_dependency 'alt_memery', '~> 2.0'
-	spec.add_dependency 'gorilla_patch', '> 3', '< 6'
-	spec.add_dependency 'toys-core', '~> 0.17.0'
+	spec.add_dependency 'alt_memery', '~> 3.0'
+	spec.add_dependency 'gorilla_patch', '> 3', '< 7'
+	spec.add_dependency 'toys-core', '~> 0.19.1'
 end
