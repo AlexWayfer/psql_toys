@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+## 1.1.0 (2026-08-14)
+
+*   Update dependencies.
+*   Switch from Cirrus CI to GitHub Actions.
+*   Fix Codecov.
+*   Fix README badges.
+
 ## 1.0.0 (2026-02-13)
 
 *   Drop Ruby 2.7, 3.0 and 3.1 support.
