@@ -105,3 +105,5 @@ jobs:
       - run: bundle exec rspec
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v7
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
